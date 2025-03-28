@@ -6,7 +6,7 @@ datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
 
 # Data Cleaning
-## Fill missing values with most frequent
+## Fill missing values with Unknown
 data['Modification'] = data['Modification'].fillna('Unknown')
 
 ## Format Year
@@ -47,5 +47,81 @@ data['Market_Demand'] = data['Market_Demand'].apply(lambda x: 0 if x == 'low' el
 # Null in Modification
 
 # Data Exploration
-## Brand
+## Brand (Ferrari highest, Lamborghini last)
 brand = data['Brand'].value_counts()
+brand.plot(kind='bar')
+plt.savefig('visualize/single/brand.png')
+plt.clf()
+
+## Model
+model = data['Model'].value_counts()
+model.plot(kind='bar')
+plt.savefig('visualize/single/model.png')
+plt.clf()
+
+## Country (Asia ~ Europe > US)
+country = data['Country'].value_counts()
+country.plot(kind='bar')
+plt.savefig('visualize/single/country.png')
+plt.clf()
+
+## Year
+year = data['Year'].value_counts()
+year.plot(kind='bar')
+plt.savefig('visualize/year.png')
+plt.clf()
+
+## Engine_Size
+engine_size = data['Engine_Size'].value_counts()
+engine_size.plot(kind='pie')
+plt.savefig('visualize/engine_size.png')
+plt.clf()
+
+## Condition (New > Used)
+condition = data['Condition'].value_counts()
+condition.plot(kind='bar')
+plt.savefig('visualize/condition.png')
+plt.clf()
+
+## Transmission (CVT > Automatic > DCT > Manual)
+transmission = data['Transmission'].value_counts()
+transmission.plot(kind='bar')
+plt.savefig('visualize/transmission.png')
+plt.clf()
+
+## Market_Demand (Low > Medium > High)
+market_demand = data['Market_Demand'].value_counts()
+market_demand.plot(kind='bar')
+plt.savefig('visualize/market_demand.png')
+plt.clf()
+
+## Popularity (Low > High > Medium)
+popularity = data['Popularity'].value_counts()
+popularity.plot(kind='bar')
+plt.savefig('visualize/popularity.png')
+plt.clf()
+
+## Fuel_Type (Petrol > Diesel > Electric)
+fuel_type = data['Fuel_Type'].value_counts()
+fuel_type.plot(kind='bar')
+plt.savefig('visualize/fuel_type.png')
+plt.clf()
+
+## Drivetrain (RWD > AWD > FWD)
+drivetrain = data['Drivetrain'].value_counts()
+drivetrain.plot(kind='bar')
+plt.savefig('visualize/drivetrain.png')
+plt.clf()
+
+## Horsepower
+horsepower = data['Horsepower'].value_counts()
+horsepower.plot(kind='hist')
+plt.savefig('visualize/horsepower.png')
+plt.clf()
+
+## Torque
+torque = data['Torque'].value_counts()
+torque.plot(kind='hist')
+plt.savefig('visualize/torque.png')
+plt.clf()
+

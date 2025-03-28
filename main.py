@@ -68,60 +68,71 @@ plt.clf()
 ## Year
 year = data['Year'].value_counts()
 year.plot(kind='bar')
-plt.savefig('visualize/year.png')
+plt.savefig('visualize/single/year.png')
 plt.clf()
 
 ## Engine_Size
 engine_size = data['Engine_Size'].value_counts()
 engine_size.plot(kind='pie')
-plt.savefig('visualize/engine_size.png')
+plt.savefig('visualize/single/engine_size.png')
 plt.clf()
 
 ## Condition (New > Used)
 condition = data['Condition'].value_counts()
 condition.plot(kind='bar')
-plt.savefig('visualize/condition.png')
+plt.savefig('visualize/single/condition.png')
 plt.clf()
 
 ## Transmission (CVT > Automatic > DCT > Manual)
 transmission = data['Transmission'].value_counts()
 transmission.plot(kind='bar')
-plt.savefig('visualize/transmission.png')
+plt.savefig('visualize/single/transmission.png')
 plt.clf()
 
 ## Market_Demand (Low > Medium > High)
 market_demand = data['Market_Demand'].value_counts()
 market_demand.plot(kind='bar')
-plt.savefig('visualize/market_demand.png')
+plt.savefig('visualize/single/market_demand.png')
 plt.clf()
 
 ## Popularity (Low > High > Medium)
 popularity = data['Popularity'].value_counts()
 popularity.plot(kind='bar')
-plt.savefig('visualize/popularity.png')
+plt.savefig('visualize/single/popularity.png')
 plt.clf()
 
 ## Fuel_Type (Petrol > Diesel > Electric)
 fuel_type = data['Fuel_Type'].value_counts()
 fuel_type.plot(kind='bar')
-plt.savefig('visualize/fuel_type.png')
+plt.savefig('visualize/single/fuel_type.png')
 plt.clf()
 
 ## Drivetrain (RWD > AWD > FWD)
 drivetrain = data['Drivetrain'].value_counts()
 drivetrain.plot(kind='bar')
-plt.savefig('visualize/drivetrain.png')
+plt.savefig('visualize/single/drivetrain.png')
 plt.clf()
 
 ## Horsepower
 horsepower = data['Horsepower'].value_counts()
 horsepower.plot(kind='hist')
-plt.savefig('visualize/horsepower.png')
+plt.savefig('visualize/single/horsepower.png')
 plt.clf()
 
 ## Torque
 torque = data['Torque'].value_counts()
 torque.plot(kind='hist')
-plt.savefig('visualize/torque.png')
+plt.savefig('visualize/single/torque.png')
 plt.clf()
 
+### Weight
+weight = data['Weight'].value_counts()
+weight.plot(kind='hist')
+plt.savefig('visualize/single/weight.png')
+plt.clf()
+
+### Top_Speed
+top_speed = data['Top_Speed'].value_counts()
+top_speed.plot(kind='hist')
+plt.savefig('visualize/single/top_speed.png')
+plt.clf()

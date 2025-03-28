@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
@@ -136,3 +137,15 @@ top_speed = data['Top_Speed'].value_counts()
 top_speed.plot(kind='hist')
 plt.savefig('visualize/single/top_speed.png')
 plt.clf()
+
+### Price
+price = data['Price'].value_counts()
+price.plot(kind='hist')
+plt.savefig('visualize/single/price.png')
+plt.clf()
+
+## Correlation
+correlation = data.corr()
+correlation.to_csv('visualize/correlation.csv')
+
+## Pairplot

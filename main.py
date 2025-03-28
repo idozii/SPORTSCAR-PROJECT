@@ -5,8 +5,8 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from sklearn.metrics import mean_squared_error, mean_absolute_error, accuracy_score, classification_report
 
 datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
@@ -199,15 +199,57 @@ plt.clf()
 print(f'Linear Regression: MSE={lr_mse}, MAE={lr_mae}')
 print(f'Random Forest Regressor: MSE={rf_mse}, MAE={rf_mae}')
 
-# Model Training for Classification
-## LabelEncoder for Price
-labelencoder = LabelEncoder()
-data['Price'] = labelencoder.fit_transform(data['Price'])
+# Model Training for Classification (Identify car's popularity or condition) 
+## Popularity
+X = data.drop(columns=['Popularity', 'Year'])
+y = data['Popularity']
 
-## Drop columns
-X = data.drop(columns=['Price', 'Year'])
-y = data['Price']
-
-## Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+## Random Forest Classifier
+rf_model = RandomForestClassifier()
+rf_model.fit(X_train, y_train)
+y_pred = rf_model.predict(X_test)
+
+rf_accuracy = accuracy_score(y_test, y_pred)
+rf_classification_report = classification_report(y_test, y_pred)
+
+print(f'Random Forest Classifier: Accuracy={rf_accuracy}')
+print(f'Classification Report: {rf_classification_report}')
+
+### Plot
+popularity = data['Popularity'].value_counts()
+popularity.plot(kind='bar')
+plt.savefig('visualize/classification/popularity.png')
+plt.clf()
+
+## Condition
+X = data.drop(columns=['Condition', 'Year'])
+y = data['Condition']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+## Random Forest Classifier
+rf_model = RandomForestClassifier()
+rf_model.fit(X_train, y_train)
+y_pred = rf_model.predict(X_test)
+
+rf_accuracy = accuracy_score(y_test, y_pred)
+rf_classification_report = classification_report(y_test, y_pred)
+
+print(f'Random Forest Classifier: Accuracy={rf_accuracy}')
+print(f'Classification Report: {rf_classification_report}')
+
+### Plot
+condition = data['Condition'].value_counts()
+condition.plot(kind='bar')
+plt.savefig('visualize/classification/condition.png')
+plt.clf()

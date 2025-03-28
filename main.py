@@ -5,6 +5,7 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 datapath = 'data/Elite Sports Cars in Data.csv'
@@ -155,29 +156,58 @@ correlation = data.corr()
 plt.figure(figsize=(20, 20))
 sns.heatmap(correlation, annot=True)
 plt.savefig('visualize/correlation/correlation.png')
+plt.clf()
 
 # Data Preprocessing
 ## Drop columns
-
-## Split data
 X = data.drop(columns=['Price', 'Year'])
 y = data['Price']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+## Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 ## Standardize data
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Model Training
+# Model Training for Regression
 ## Linear Regression
 lr_model = LinearRegression()
 lr_model.fit(X_train, y_train)
 y_pred = lr_model.predict(X_test)
 
-## Evaluation
-mse = mean_squared_error(y_test, y_pred)
-mae = mean_absolute_error(y_test, y_pred)
+lr_mse = mean_squared_error(y_test, y_pred)
+lr_mae = mean_absolute_error(y_test, y_pred)
 
-print(f'Mean Squared Error: {mse}')
-print(f'Mean Absolute Error: {mae}')
+sns.regplot(x=y_test, y=y_pred)
+plt.savefig('visualize/regression/linear_regression.png')
+plt.clf()
+
+## Random Forest Regressor
+rf_model = RandomForestRegressor()
+rf_model.fit(X_train, y_train)
+y_pred = rf_model.predict(X_test)
+
+rf_mse = mean_squared_error(y_test, y_pred)
+rf_mae = mean_absolute_error(y_test, y_pred)
+
+sns.regplot(x=y_test, y=y_pred)
+plt.savefig('visualize/regression/random_forest_regressor.png')
+plt.clf()
+
+print(f'Linear Regression: MSE={lr_mse}, MAE={lr_mae}')
+print(f'Random Forest Regressor: MSE={rf_mse}, MAE={rf_mae}')
+
+# Model Training for Classification
+## LabelEncoder for Price
+labelencoder = LabelEncoder()
+data['Price'] = labelencoder.fit_transform(data['Price'])
+
+## Drop columns
+X = data.drop(columns=['Price', 'Year'])
+y = data['Price']
+
+## Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+

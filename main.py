@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
@@ -10,41 +14,45 @@ data = pd.read_csv(datapath)
 ## Fill missing values with Unknown
 data['Modification'] = data['Modification'].fillna('Unknown')
 
-## Format Year
-data['Year'] = data['Year'].astype(int)
+## Format Year using pd.to_datetime
+data['Year'] = pd.to_datetime(data['Year'], format='%Y', errors='coerce')
 
-## Format condition
-### 0: Used, 1: New
-data['Condition'] = data['Condition'].str.lower()
-data['Condition'] = data['Condition'].apply(lambda x: 1 if x == 'new' else 0)
+## Format Brand in Categorical Data using LabelEncoder
+labelencoder = LabelEncoder()
+data['Brand'] = labelencoder.fit_transform(data['Brand'])
 
-## Format Fuel_Type
-### 0: petrol, 1: diesel, 2: electric
-data['Fuel_Type'] = data['Fuel_Type'].str.lower()
-data['Fuel_Type'] = data['Fuel_Type'].apply(lambda x: 0 if x == 'petrol' else (1 if x == 'diesel' else 2))
+## Format Model in Categorical Data using LabelEncoder
+data['Model'] = labelencoder.fit_transform(data['Model'])
 
-## Format Drivetrain
-### 0: RWD, 1: AWD, 2: FWD
-data['Drivetrain'] = data['Drivetrain'].str.lower()
-data['Drivetrain'] = data['Drivetrain'].apply(lambda x: 0 if x == 'rwd' else (1 if x == 'awd' else 2))
+## Format Country in Categorical Data using LabelEncoder
+data['Country'] = labelencoder.fit_transform(data['Country'])
 
-## Format Transmission
-### 0: CVT, 1: Automatic, 2: DCT, 3: Manual
-data['Transmission'] = data['Transmission'].str.lower()
-data['Transmission'] = data['Transmission'].apply(lambda x: 0 if x == 'cvt' else (1 if x == 'automatic' else (2 if x == 'dct' else 3)))
+## Format Modification in Categorical Data using LabelEncoder
+data['Modification'] = labelencoder.fit_transform(data['Modification'])
 
-## Format Popularity
-### 0: Low, 1: Medium, 2: High
-data['Popularity'] = data['Popularity'].str.lower()
-data['Popularity'] = data['Popularity'].apply(lambda x: 0 if x == 'low' else (1 if x == 'medium' else 2))
+## Format Condition in Categorical Data using LabelEncoder
+data['Condition'] = labelencoder.fit_transform(data['Condition'])
 
-## Format Market_Demand
-### 0: Low, 1: Medium, 2: High
-data['Market_Demand'] = data['Market_Demand'].str.lower()
-data['Market_Demand'] = data['Market_Demand'].apply(lambda x: 0 if x == 'low' else (1 if x == 'medium' else 2))
+## Format Fuel_Type in Categorical Data using LabelEncoder
+data['Fuel_Type'] = labelencoder.fit_transform(data['Fuel_Type'])
 
+## Format Drivetrain in Categorical Data using LabelEncoder
+data['Drivetrain'] = labelencoder.fit_transform(data['Drivetrain'])
+
+## Format Transmission in Categorical Data using LabelEncoder
+data['Transmission'] = labelencoder.fit_transform(data['Transmission'])
+
+## Format Popularity in Categorical Data using LabelEncoder
+data['Popularity'] = labelencoder.fit_transform(data['Popularity'])
+
+## Format Market_Demand in Categorical Data using LabelEncoder
+data['Market_Demand'] = labelencoder.fit_transform(data['Market_Demand'])
+
+print(data.info())
+
+# Datetime: Year
 # Categorical: Brand, Model, Country, Modification
-# Numerical: Year, Engine_Size, Condition, Transmission, Market_Demand, Popularity, Fuel_Type, Drivetrain, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
+# Numerical: Engine_Size, Condition, Transmission, Market_Demand, Popularity, Fuel_Type, Drivetrain, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
 # Null in Modification
 
 # Data Exploration
@@ -146,6 +154,32 @@ plt.clf()
 
 ## Correlation
 correlation = data.corr()
-correlation.to_csv('visualize/correlation.csv')
+plt.figure(figsize=(20, 20))
+sns.heatmap(correlation, annot=True)
+plt.savefig('visualize/correlation/correlation.png')
 
-## Pairplot
+# Data Preprocessing
+## Drop columns
+
+## Split data
+X = data.drop(columns=['Price'])
+y = data['Price']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+## Standardize data
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Model Training
+## Linear Regression
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+y_pred = lr_model.predict(X_test)
+
+## Evaluation
+mse = mean_squared_error(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+
+print(f'Mean Squared Error: {mse}')
+print(f'Mean Absolute Error: {mae}')

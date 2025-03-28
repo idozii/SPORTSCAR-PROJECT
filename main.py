@@ -5,10 +5,6 @@ import matplotlib.pyplot as plt
 datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
 
-# Categorical: Brand, Model, Country, Modification
-# Numerical: Year, Engine_Size, Condition, Transmission, Market_Demand, Popularity, Fuel_Type, Drivetrain, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
-# Null in Modification
-
 # Data Cleaning
 ## Fill missing values with most frequent
 data['Modification'] = data['Modification'].fillna('Unknown')
@@ -46,6 +42,10 @@ data['Popularity'] = data['Popularity'].apply(lambda x: 0 if x == 'low' else (1 
 data['Market_Demand'] = data['Market_Demand'].str.lower()
 data['Market_Demand'] = data['Market_Demand'].apply(lambda x: 0 if x == 'low' else (1 if x == 'medium' else 2))
 
-print(data.head())
-print(data.info())
-print(data['Modification'].value_counts())
+# Categorical: Brand, Model, Country, Modification
+# Numerical: Year, Engine_Size, Condition, Transmission, Market_Demand, Popularity, Fuel_Type, Drivetrain, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
+# Null in Modification
+
+# Data Exploration
+## Brand
+brand = data['Brand'].value_counts()

@@ -10,6 +10,11 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 datapath = 'data/Elite Sports Cars in Data.csv'
 data = pd.read_csv(datapath)
 
+# Datetime: Year
+# Categorical: Brand, Model, Country, Condition Modification, Fuel_Type, Drivetrain, Transmission, Popularity, Market_Demand, Modification
+# Numerical: Engine_Size, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
+# Null in Modification
+
 # Data Cleaning
 ## Fill missing values with Unknown
 data['Modification'] = data['Modification'].fillna('Unknown')
@@ -47,13 +52,6 @@ data['Popularity'] = labelencoder.fit_transform(data['Popularity'])
 
 ## Format Market_Demand in Categorical Data using LabelEncoder
 data['Market_Demand'] = labelencoder.fit_transform(data['Market_Demand'])
-
-print(data.info())
-
-# Datetime: Year
-# Categorical: Brand, Model, Country, Modification
-# Numerical: Engine_Size, Condition, Transmission, Market_Demand, Popularity, Fuel_Type, Drivetrain, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
-# Null in Modification
 
 # Data Exploration
 ## Brand (Ferrari highest, Lamborghini last)
@@ -162,7 +160,7 @@ plt.savefig('visualize/correlation/correlation.png')
 ## Drop columns
 
 ## Split data
-X = data.drop(columns=['Price'])
+X = data.drop(columns=['Price', 'Year'])
 y = data['Price']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 

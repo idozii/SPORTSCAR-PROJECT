@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from sklearn.cluster import KMeans
 from sklearn.metrics import mean_squared_error, mean_absolute_error, accuracy_score, classification_report
 
 datapath = 'data/Elite Sports Cars in Data.csv'
@@ -253,3 +254,6 @@ condition = data['Condition'].value_counts()
 condition.plot(kind='bar')
 plt.savefig('visualize/classification/condition.png')
 plt.clf()
+
+# Model Training for Clustering (Group cars with similar features)
+## KMeans

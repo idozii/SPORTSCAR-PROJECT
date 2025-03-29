@@ -6,36 +6,36 @@ This project analyzes data on elite sports cars, including data cleaning, explor
 
 ```plaintext
 Elite Sports Cars Data Analysis/
-├── data/
-│   └── Elite Sports Cars in Data.csv
-├── main.py
-├── README.md
-├── requirements.txt
-├── visualize/
-│   ├── classification/
-│   │   ├── condition.png
-│   │   └── popularity.png
-│   ├── correlation/
-│   │   └── correlation.png
-│   ├── regression/
-│   │   ├── linear_regression.png
-│   │   └── random_forest_regressor.png
-│   └── single/
-│       ├── brand.png
-│       ├── condition.png
-│       ├── country.png
-│       ├── drivetrain.png
-│       ├── engine_size.png
-│       ├── fuel_type.png
-│       ├── horsepower.png
-│       ├── market_demand.png
-│       ├── model.png
-│       ├── price.png
-│       ├── top_speed.png
-│       ├── torque.png
-│       ├── transmission.png
-│       ├── weight.png
-│       └── year.png
+├── 📂 data/
+│   └── 📄 Elite Sports Cars in Data.csv
+├── 📄 main.py
+├── 📄 README.md
+├── 📄 requirements.txt
+├── 📂 visualize/
+│   ├── 📂 classification/
+│   │   ├── 🖼️ condition.png
+│   │   └── 🖼️ popularity.png
+│   ├── 📂 correlation/
+│   │   └── 🖼️ correlation.png
+│   ├── 📂 regression/
+│   │   ├── 🖼️ linear_regression.png
+│   │   └── 🖼️ random_forest_regressor.png
+│   └── 📂 single/
+│       ├── 🖼️ brand.png
+│       ├── 🖼️ condition.png
+│       ├── 🖼️ country.png
+│       ├── 🖼️ drivetrain.png
+│       ├── 🖼️ engine_size.png
+│       ├── 🖼️ fuel_type.png
+│       ├── 🖼️ horsepower.png
+│       ├── 🖼️ market_demand.png
+│       ├── 🖼️ model.png
+│       ├── 🖼️ price.png
+│       ├── 🖼️ top_speed.png
+│       ├── 🖼️ torque.png
+│       ├── 🖼️ transmission.png
+│       ├── 🖼️ weight.png
+│       └── 🖼️ year.png
 ```
 
 ## 📊 Data
@@ -46,13 +46,13 @@ The dataset `Elite Sports Cars in Data.csv` contains various features of elite s
 - **Categorical**: Brand, Model, Country, Condition, Modification, Fuel_Type, Drivetrain, Transmission, Popularity, Market_Demand
 - **Numerical**: Engine_Size, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
 
-## Data Cleaning
+## 🧹 Data Cleaning
 
 - Fill missing values in `Modification` with 'Unknown'
 - Format `Year` using `pd.to_datetime`
 - Encode categorical features using `LabelEncoder`
 
-## Data Exploration
+## 🔍 Data Exploration
 
 Visualizations are saved in the `visualize/single/` directory:
 
@@ -73,13 +73,15 @@ Visualizations are saved in the `visualize/single/` directory:
 - Top_Speed distribution
 - Price distribution
 
-## Correlation
+## 📈 Correlation
 
 A correlation heatmap is saved in `visualize/correlation/correlation.png`.
 
-## Model Training
+![Correlation Heatmap](visualize/correlation/correlation.png)
 
-### Regression
+## 🧠 Model Training
+
+### 📉 Regression
 
 - Linear Regression
 - Random Forest Regressor
@@ -87,9 +89,11 @@ A correlation heatmap is saved in `visualize/correlation/correlation.png`.
 Visualizations are saved in the `visualize/regression/` directory:
 
 - Linear Regression results
+![Linear Regression results](visualize/regression/linear_regression.png)
 - Random Forest Regressor results
+![Random Forest Regressor results](visualize/regression/random_forest_regressor.png)
 
-### Classification
+### 📊 Classification
 
 - Random Forest Classifier for Popularity
 - Random Forest Classifier for Condition
@@ -99,7 +103,7 @@ Visualizations are saved in the `visualize/classification/` directory:
 - Popularity classification results
 - Condition classification results
 
-### Clustering
+### 🔍 Clustering
 
 - KMeans clustering (implementation in progress)
 
@@ -117,6 +121,6 @@ Visualizations are saved in the `visualize/classification/` directory:
     python main.py
     ```
 
-## License
+## 📜 License
 
 This project is licensed under the MIT License.

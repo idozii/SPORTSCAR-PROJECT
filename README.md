@@ -157,15 +157,17 @@ Visualizations are saved in the `visualize/regression/` directory:
 
 ### 📊 Classification
 
-- Random Forest Classifier for Popularity
-- Random Forest Classifier for Condition
+Classification analysis is used to predict categorical target variables based on one or more predictor variables. In this project, we have used the Random Forest Classifier for two classification tasks:
+
+- **Random Forest Classifier for Popularity**: This model predicts the popularity rating of a car based on various features. The Random Forest Classifier is an ensemble learning method that uses multiple decision trees to improve the accuracy and robustness of the predictions. It reduces overfitting by averaging the results of multiple trees.
+- **Random Forest Classifier for Condition**: This model predicts the condition of a car (e.g., New, Used) based on various features. Similar to the popularity classifier, it uses the Random Forest Classifier to enhance prediction accuracy and robustness.
 
 Visualizations are saved in the `visualize/classification/` directory:
 
-- Popularity classification results
-![Popularity classification results](visualize/classification/popularity.png)
-- Condition classification results
-![Condition classification results](visualize/classification/condition.png)
+- **Popularity classification results**: This visualization shows the performance of the Random Forest Classifier in predicting the popularity rating of cars. It includes metrics such as accuracy, precision, recall, and the confusion matrix to evaluate the model's performance.
+  ![Popularity classification results](visualize/classification/popularity.png)
+- **Condition classification results**: This visualization shows the performance of the Random Forest Classifier in predicting the condition of cars. It includes metrics such as accuracy, precision, recall, and the confusion matrix to evaluate the model's performance.
+  ![Condition classification results](visualize/classification/condition.png)
 
 ### 🔍 Clustering
 

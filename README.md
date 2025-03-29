@@ -1,48 +1,18 @@
-# Elite Sports Cars Data Analysis
+# 🚗 Elite Sports Cars Data Analysis
 
 This project analyzes data on elite sports cars, including data cleaning, exploration, visualization, and model training for regression, classification, and clustering.
 
-## Project Structure
+## 📁 Project Structure
 
-Elite Sports Cars Data Analysis/
-├── data/
-│   └── Elite Sports Cars in Data.csv
-├── main.py
-├── README.md
-├── requirements.txt
-├── visualize/
-│   ├── classification/
-│   │   ├── condition.png
-│   │   └── popularity.png
-│   ├── correlation/
-│   │   └── correlation.png
-│   ├── regression/
-│   │   ├── linear_regression.png
-│   │   └── random_forest_regressor.png
-│   └── single/
-│       ├── brand.png
-│       ├── condition.png
-│       ├── country.png
-│       ├── drivetrain.png
-│       ├── engine_size.png
-│       ├── fuel_type.png
-│       ├── horsepower.png
-│       ├── market_demand.png
-│       ├── model.png
-│       ├── price.png
-│       ├── top_speed.png
-│       ├── torque.png
-│       ├── transmission.png
-│       ├── weight.png
-│       └── year.png
+Elite Sports Cars Data Analysis/ ├── data/ │ └── Elite Sports Cars in Data.csv ├── main.py ├── README.md ├── requirements.txt ├── visualize/ │ ├── classification/ │ │ ├── condition.png │ │ └── popularity.png │ ├── correlation/ │ │ └── correlation.png │ ├── regression/ │ │ ├── linear_regression.png │ │ └── random_forest_regressor.png │ └── single/ │ ├── brand.png │ ├── condition.png │ ├── country.png │ ├── drivetrain.png │ ├── engine_size.png │ ├── fuel_type.png │ ├── horsepower.png │ ├── market_demand.png │ ├── model.png │ ├── price.png │ ├── top_speed.png │ ├── torque.png │ ├── transmission.png │ ├── weight.png │ └── year.png
 
-## Data
+## 📊 Data
 
 The dataset `Elite Sports Cars in Data.csv` contains various features of elite sports cars, including:
 
-- Datetime: Year
-- Categorical: Brand, Model, Country, Condition, Modification, Fuel_Type, Drivetrain, Transmission, Popularity, Market_Demand
-- Numerical: Engine_Size, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
+- **Datetime**: Year
+- **Categorical**: Brand, Model, Country, Condition, Modification, Fuel_Type, Drivetrain, Transmission, Popularity, Market_Demand
+- **Numerical**: Engine_Size, Horsepower, Torque, Weight, Top_Speed, Acceleration_0_100, Fuel_Efficiency, CO2_Emissions, Price, Mileage, Safety_Rating, Number_of_Owners, Insurance_Cost, Production_Units, Log_Price, Log_Mileage
 
 ## Data Cleaning
 

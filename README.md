@@ -101,7 +101,9 @@ Visualizations are saved in the `visualize/regression/` directory:
 Visualizations are saved in the `visualize/classification/` directory:
 
 - Popularity classification results
+![Popularity classification results](visualize/classification/popularity.png)
 - Condition classification results
+![Condition classification results](visualize/classification/condition.png)
 
 ### 🔍 Clustering
 
